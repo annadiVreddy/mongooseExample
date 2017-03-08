@@ -1,9 +1,6 @@
-mongoExamApp.controller('userCntrl', function($scope){
+mongoExamApp.controller('userCntrl', function($scope, UserServcie){
         
        console.log("mongo controlle::::");
-       $scope.users = [{firstName:"first0",lastName:"last0",userName:"user0",email:"user@email.com",password:"pass0"},
-                      {firstName:"first0",lastName:"last0",userName:"user0",email:"user@email.com",password:"pass0"},
-                      {firstName:"first0",lastName:"last0",userName:"user0",email:"user@email.com",password:"pass0"},
-                      {firstName:"first0",lastName:"last0",userName:"user0",email:"user@email.com",password:"pass0"}];
+       $scope.users = UserServcie.getUsers();
        
 });
