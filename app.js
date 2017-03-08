@@ -3,7 +3,7 @@ var express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser');
 
-var db = mongoose.connect('mongodb://admin:tester123@ds139959.mlab.com:39959/projectifyapp');
+var db = {};//mongoose.connect('mongodb://admin:tester123@ds139959.mlab.com:39959/projectifyapp');
 
 //console.log(db);
 
