@@ -3,7 +3,7 @@ var express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser');
 
-var db = {};//mongoose.connect('mongodb://admin:tester123@ds139959.mlab.com:39959/projectifyapp');
+var db = mongoose.connect('');
 
 //console.log(db);
 
@@ -18,63 +18,17 @@ var port = process.env.PORT || 3000;
 
 var projectfyRouter = express.Router();
 
-projectfyRouter.route('/projects').get(function(req,res){
+projectfyRouter.route('/users').get(function(req,res){
     
-    Project.find(function(err,projects){
+    User.find(,function(err,users){
        if(err){
            res.status(500).send(err);
        }else{
-           res.json(projects);
-       } 
-    });
-});
-
-projectfyRouter.route('/validateUser').post(function(req,res){
-    
-    //console.log(req);
-    var userName = req.body.userName;
-    var password = req.body.password;
-    console.log(userName);
-    console.log(password);
-    
-    User.findOne({userName:userName,password:password},function(err,users){
-       if(err){
-           res.status(500).send(err);
-       }else{
-           console.log("USERS:::::"+JSON.stringify(users));
-          if(null != users && users.userName == userName && users.password == password){
-               console.log("User found:::"+userName);
-               res.json(users);
-           }else{
-               var inVlaidRes = {errorCode:0,errorMessage:"User Not Found"};
-               res.json(inVlaidRes);
-           }
+          res.json(users);
        } 
     });
 })
 
-
-projectfyRouter.route('/registerUser').post(function(req,res){
-    
-    //console.log(req);
-    var user = req.body.user;
-    console.log('user in the request::::::' + JSON.stringify(user));
-   
-    User.save(user,function(err,users){
-       if(err){
-           res.status(500).send(err);
-       }else{
-           console.log("USERS:::::"+JSON.stringify(users));
-          if(null != users && users.userName == userName && users.password == password){
-               console.log("User found:::"+userName);
-               res.json(users);
-           }else{
-               var inVlaidRes = {errorCode:0,errorMessage:"User Not Found"};
-               res.json(inVlaidRes);
-           }
-       } 
-    });
-})
 
 app.use(express.static('public'));
 app.use(express.static('node_modules'));
