@@ -3,7 +3,7 @@ var express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser');
 
-var db = mongoose.connect('');
+var db = mongoose.connect(' ');
 
 //console.log(db);
 
