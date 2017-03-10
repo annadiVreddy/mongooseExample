@@ -3,7 +3,21 @@ var express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser');
 
-var db = mongoose.connect(' ');
+var MongoClient = require('mongodb').MongoClient;
+
+var dbins; 
+    
+MongoClient.connect("mongodb://test:tester123@ds123050.mlab.com:23050/projectone", function (err, db) {
+    
+    if(err){
+        console.log('error while connecting to mongo db:::'+err);
+    }else{
+        dbins = db;
+        console.log('we are connected:::::'+dbins);
+    }
+});
+
+//var db = mongoose.connect(' ');
 
 //console.log(db);
 
@@ -20,14 +34,28 @@ var projectfyRouter = express.Router();
 
 projectfyRouter.route('/users').get(function(req,res){
     
-    User.find(,function(err,users){
-       if(err){
-           res.status(500).send(err);
-       }else{
-          res.json(users);
-       } 
-    });
+    console.log('call from angular:::'+req.body);
+    
+     var coll = dbins.collection('users', function(err, collection) {});
+        coll.find().toArray(function(err, items) {
+            res.json(items);
+        });
 })
+
+function getUsers(){
+    
+    
+    
+}
+
+
+        
+        
+    
+                
+
+
+
 
 
 app.use(express.static('public'));

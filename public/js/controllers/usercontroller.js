@@ -1,6 +1,9 @@
 mongoExamApp.controller('userCntrl', function($scope, UserServcie){
         
        console.log("mongo controlle::::");
-       $scope.users = UserServcie.getUsers();
-       
+       UserServcie.getUsers(function(response,status){
+           console.log('in controller::::'+JSON.stringify(response));
+           console.log('in controller::::'+status);
+           $scope.users = response;
+       });
 });

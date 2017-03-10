@@ -2,23 +2,23 @@ mongoExamApp.factory('UserServcie', ['$http', function($http){
     
     var UserServcie = {};
     
-    UserServcie.getUsers = function(){
-        
-        var promise = $http.get('').then(function (response) {
-        // The then function here is an opportunity to modify the response
-        console.log(response);
-        // The return value gets picked up by the then in the controller.
-        return response.data;
+    UserServcie.getUsers = function(resp){
+        var promise = $http.get('/api/users').then(function (response) {
+            resp(response.data,'200');
       });
-        
-        
-        var arry =  [{firstName:"first0",lastName:"last0",userName:"user0",email:"user@email.com",password:"pass0"},
-                      {firstName:"first0",lastName:"last0",userName:"user0",email:"user@email.com",password:"pass0"},
-                      {firstName:"first0",lastName:"last0",userName:"user0",email:"user@email.com",password:"pass0"},
-                      {firstName:"first0",lastName:"last0",userName:"user0",email:"user@email.com",password:"pass0"}];
-        
-        return arry;
+ 
     };
+    
+    function resp(data,status){
+        return data;
+    }
     
     return UserServcie;
 }])
+
+
+var add = function(a,b){
+    return a+b;
+}
+
+add(a,3);
